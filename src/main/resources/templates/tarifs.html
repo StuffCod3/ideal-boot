@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/assets/css/tarifs.css">
+
+    <script src="//code.jivo.ru/widget/f0vKcznqMe" async></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU"></script>
+    <script src="assets/js/map.js"></script>
+    <script src="assets/js/scroll.js"></script>
+    <script src="assets/js/animation_tarifs.js"></script>
+    <script src="assets/js/burger.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/img/logo.svg">
+
+    <title>Тарифы грузоперевозок | Идеал</title>
+</head>
+<body>
+
+    <div class="bg">
+        <header class="header">
+            <div class="container">
+                <div class="header_content">
+                    <a href="/" class="header_content_logo">
+                        <img src="assets/img/logo.svg" alt="">
+                    </a>
+                    <div class="header_content_navigation">
+                        <nav>
+                            <ul class="navigation_ul">
+                                <li class="navigation_ul_li">
+                                    <a href="/">Главная</a>
+                                </li>
+                                <li id="calc_href" class="navigation_ul_li">
+                                    <a href="/#calculate">Калькулятор</a>
+                                </li>
+                                <li class="navigation_ul_li">
+                                    <a href="/rates">Тарифы</a>
+                                </li>
+                                <li class="navigation_ul_li">
+                                    <a href="/request">Заявка</a>
+                                </li>
+                                <li class="navigation_ul_li">
+                                    <a href="/about">О компании</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <button class="header_burger_btn" id="burger">
+                        <span></span><span></span><span></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+    
+        <main>
+            <section class="tarifs">
+                <div class="container">
+                    <div class="tarifs_content">
+                        <div class="tarifs_text">
+                            <h1>Тарифы наших услуг</h1>
+                            <p>Все наши актуальные тарифы вы можете скачать и посмотреть в Excel файлe</p>
+                        </div>
+
+                        <div class="excels">
+                            <a href="" class="excel_block">
+                                <img src="/assets/img/excel.png" alt="">
+                                <div class="excel_text">
+                                    <h1>Воздушные</h1>
+                                    <p>перевозки</p>
+                                </div>
+                            </a>
+
+                            <a href="" class="excel_block">
+                                <img src="/assets/img/excel.png" alt="">
+                                <div class="excel_text">
+                                    <h1>Дорожные</h1>
+                                    <p>перевозки</p>
+                                </div>
+                            </a>
+
+                            <a href="" class="excel_block">
+                                <img src="/assets/img/excel.png" alt="">
+                                <div class="excel_text">
+                                    <h1>Ж/Д</h1>
+                                    <p>перевозки</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer_content">
+                <div class="info_company">
+                    <img src="/assets/img/logo2.png" alt="">
+                    <div class="text_info_block">
+
+                        <div class="text_info">
+                            <h1>Адрес:</h1>
+                            <p>Московская обл., Аэропорт Домодедово, грузовой терминал</p>
+                        </div>
+
+                        <div class="text_info">
+                            <h1>Email:</h1>
+                            <p>info@aviaperevozki.pro</p>
+                        </div>
+
+                        <div class="text_info">
+                            <h1>Телефон:</h1>
+                            <p>+7 (495) 741-11-23</p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="footer_url">
+                    <h1>Сервисы</h1>
+                    <nav>
+                        <ul class="footer_ul">
+                            <li class="footer_ul_li">
+                                <a href="/auto">Дорожные перевозки</a>
+                            </li>
+
+                            <li class="footer_ul_li">
+                                <a href="/air">Воздушные перевозки</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="footer_url">
+                    <h1>Соцсети</h1>
+                    <nav>
+                        <ul class="footer_ul">
+                            <li class="footer_ul_li">
+                                <a href="">Вконтакте</a>
+                            </li>
+
+                            <li class="footer_ul_li">
+                                <a href="">Telegram</a>
+                            </li>
+
+                            <li class="footer_ul_li">
+                                <a href="">WhatsApp</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div id="map-test" class="map"></div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

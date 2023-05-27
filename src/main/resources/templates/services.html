@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/assets/css/services.css">
+
+    <script src="//code.jivo.ru/widget/f0vKcznqMe" async></script>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=&lang=ru_RU"></script>
+    <script src="assets/js/map.js"></script>
+    <script src="assets/js/scroll.js"></script>
+    <script src="assets/js/animation_dig.js"></script>
+    <script src="assets/js/animation_person.js"></script>
+    <script src="assets/js/burger.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/img/logo.svg">
+    <title>Доставка грузов из Москвы | Идеал</title>
+
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header_content">
+                <a href="/" class="header_content_logo">
+                    <img src="assets/img/logo.svg" alt="">
+                </a>
+                <div class="header_content_navigation">
+                    <nav>
+                        <ul class="navigation_ul">
+                            <li class="navigation_ul_li">
+                                <a href="/">Главная</a>
+                            </li>
+                            <li id="calc_href" class="navigation_ul_li">
+                                <a href="/#calculate">Калькулятор</a>
+                            </li>
+                            <li class="navigation_ul_li">
+                                <a href="/rates">Тарифы</a>
+                            </li>
+                            <li class="navigation_ul_li">
+                                <a href="/request">Заявка</a>
+                            </li>
+                            <li class="navigation_ul_li">
+                                <a href="/about">О компании</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    
+                </div>
+                <button class="header_burger_btn" id="burger">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="service_block">
+            <div class="main_text">
+                <h1>Услуги грузоперевозок</h1>
+            </div>
+            <div class="service_typies_block">
+                <a href="/air" class="type">
+                    <div class="type_content">
+                        <img src="/assets/img/plane.png" alt="">
+                        <h1>Воздушные грузоперевозки</h1>
+                    </div>
+                </a>
+                <a href="/auto" class="type">
+                    <div class="type_content">
+                        <img src="/assets/img/truck2.png" alt="">
+                        <h1>Дорожные грузоперевозки</h1>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer_content">
+                <div class="info_company">
+                    <img src="/assets/img/logo2.png" alt="">
+                    <div class="text_info_block">
+
+                        <div class="text_info">
+                            <h1>Адрес:</h1>
+                            
+                            <p>Московская обл., Аэропорт Домодедово, грузовой терминал</p>
+                        </div>
+
+                        <div class="text_info">
+                            <h1>Email:</h1>
+                            <p>info@aviaperevozki.pro</p>
+                        </div>
+
+                        <div class="text_info">
+                            <h1>Телефон:</h1>
+                            <p>+7 (495) 741-11-23</p>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="footer_url">
+                    <h1>Сервисы</h1>
+                    <nav>
+                        <ul class="footer_ul">
+                            <li class="footer_ul_li">
+                                <a href="/auto">Дорожные перевозки</a>
+                            </li>
+
+                            <li class="footer_ul_li">
+                                <a href="/air">Воздушные перевозки</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="footer_url">
+                    <h1>Соцсети</h1>
+                    <nav>
+                        <ul class="footer_ul">
+                            <li class="footer_ul_li">
+                                <a href="">Вконтакте</a>
+                            </li>
+
+                            <li class="footer_ul_li">
+                                <a href="">Telegram</a>
+                            </li>
+
+                            <li class="footer_ul_li">
+                                <a href="">WhatsApp</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div id="map-test" class="map"></div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
+
+
+
