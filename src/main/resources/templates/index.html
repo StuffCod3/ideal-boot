@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -15,6 +15,7 @@
     <script src="assets/js/animation_dig.js"></script>
     <script src="assets/js/animation_person.js"></script>
     <script src="assets/js/burger.js"></script>
+<!--    <script src="assets/js/calculator.js}"></script>-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
@@ -123,27 +124,23 @@
                     <div class="calculator">
                         <div class="container_calculator">
                             <div class="calculator_content">
-                                <h1>Расчет стоимости авиа перевозки</h1>
-                                <form action="" >
+                                <h1>Цена авиаперевозки из Москвы</h1>
+                                <form id="myForm" th:action="@{/calculate}" method="post" th:object="${calc}">
 
                                     <div class="from_where">
-                                        <div class="from_where_select_block">
-                                            <p>Пункт отправления</p>
-                                            <select class="from_where_select" name="from_sending">
-                                                <option selected disabled value="select">Выбрать</option>
-                                                <option value="road_type">Москва</option>
-                                                <option value="air_type">Санкт-Петербург</option>
-                                                <option value="train_type">Владимир</option>
-                                            </select>
-                                        </div>
-                                        <img src="/assets/img/vector.svg" alt="">
+<!--                                        <div class="from_where_select_block">-->
+<!--                                            <p>Пункт отправления</p>-->
+<!--                                            <select class="from_where_select">-->
+<!--                                                <option selected disabled value="select">Выбрать</option>-->
+<!--                                                <option value="road_type">Москва</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                        <img src="/assets/img/vector.svg" alt="">-->
                                         <div class="from_where_select_block">
                                             <p>Пункт назначения</p>
-                                            <select class="from_where_select" name="from_sending">
-                                                <option selected disabled value="select">Выбрать</option>
-                                                <option value="road_type">Москва</option>
-                                                <option value="air_type">Санкт-Петербург</option>
-                                                <option value="train_type">Владимир</option>
+                                            <select class="from_where_select" name="from_sending" th:field="*{city}">
+                                                <option th:selected="selected" value="">Выбрать</option>
+                                                <option th:each="r : ${rate}" th:value="${r.city}" th:text="${r.city}"></option>
                                             </select>
                                         </div>
                                     </div>
@@ -151,26 +148,36 @@
                                      <div class="dimensions">
                                         <div class="dimension_block">
                                             <p>Вес, кг</p>
-                                            <input type="text" class="dimension_input">
+                                            <input th:field="*{weight}" step="any" min="0" type="number" class="dimension_input">
+
                                         </div>
                                         <div class="dimension_block">
                                             <p>Длинна, м</p>
-                                            <input type="text" class="dimension_input">
+                                            <input th:field="*{length}" step="any" min="0" type="number" class="dimension_input">
+
                                         </div>
                                         <div class="dimension_block">
                                             <p>Ширина, м</p>
-                                            <input type="text" class="dimension_input">
+                                            <input th:field="*{width}" step="any" min="0" type="number" class="dimension_input">
+
                                         </div>
                                         <div class="dimension_block">
                                             <p>Высота, м</p>
-                                            <input type="text" class="dimension_input">
+                                            <input th:field="*{height}" step="any" min="0" type="number" class="dimension_input">
+
                                         </div>
 
-                                        <input type="submit" value="Расчитать" class="calc_btn">
+                                        <input id="calc" onclick="calc()" type="submit" value="Расчитать" class="calc_btn">
                                      </div>
-
+                                    <div class="errors">
+                                        <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
+                                        <span th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></span>
+                                        <span th:if="${#fields.hasErrors('length')}" th:errors="*{length}"></span>
+                                        <span th:if="${#fields.hasErrors('width')}" th:errors="*{width}"></span>
+                                        <span th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></span>
+                                    </div>
                                      <div class="price">
-                                        <p>Цена: 80000 руб.</p>
+                                        <p id="result" th:text="${result}"></p>
                                      </div>
                                 </form>
                             </div>
