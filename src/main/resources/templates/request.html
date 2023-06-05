@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,193 +12,212 @@
     <script src="assets/js/map.js"></script>
     <script src="assets/js/scroll.js"></script>
     <script src="assets/js/burger.js"></script>
+    <script src="assets/js/city.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" href="assets/img/logo.svg">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <title>Заявка на улугу грузоперевозок | Идеал</title>
 </head>
-<body>
-    
-    <header class="header">
-        <div class="container">
-            <div class="header_content">
-                <a href="/" class="header_content_logo">
-                    <img src="assets/img/logo.svg" alt="">
-                </a>
-                <div class="header_content_navigation">
-                    <nav>
-                        <ul class="navigation_ul">
-                            <li class="navigation_ul_li">
-                                <a href="/">Главная</a>
-                            </li>
-                            <li id="calc_href" class="navigation_ul_li">
-                                <a href="/#calculate">Калькулятор</a>
-                            </li>
-                            <li class="navigation_ul_li">
-                                <a href="/rates">Тарифы</a>
-                            </li>
-                            <li class="navigation_ul_li">
-                                <a href="/request">Заявка</a>
-                            </li>
-                            <li class="navigation_ul_li">
-                                <a href="/about">О компании</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-                <button class="header_burger_btn" id="burger">
-                    <span></span><span></span><span></span>
-                </button>
+<body onload="loadCities()">
+
+<header class="header">
+    <div class="container">
+        <div class="header_content">
+            <a href="/" class="header_content_logo">
+                <img src="assets/img/logo.svg" alt="">
+            </a>
+            <div class="header_content_navigation">
+                <nav>
+                    <ul class="navigation_ul">
+                        <li class="navigation_ul_li">
+                            <a href="/">Главная</a>
+                        </li>
+                        <li id="calc_href" class="navigation_ul_li">
+                            <a href="/#calculate">Калькулятор</a>
+                        </li>
+                        <li class="navigation_ul_li">
+                            <a href="/tarifs">Тарифы</a>
+                        </li>
+                        <li class="navigation_ul_li">
+                            <a href="/request">Заявка</a>
+                        </li>
+                        <li class="navigation_ul_li">
+                            <a href="/about">О компании</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
+            <button class="header_burger_btn" id="burger">
+                <span></span><span></span><span></span>
+            </button>
         </div>
-    </header>
+    </div>
+</header>
 
-    <main>
-        <div class="request_service">
-            <div class="container">
-                <div class="request_content">
-                    <div class="request_text">
-                        <h1>Онлайн-заявка</h1>
-                        <p>Вы можете оставить заявку о доставке на нашем сайте онлайн</p>
-                    </div>
+<main>
+    <div class="request_service">
+        <div class="container">
+            <div class="request_content">
+                <div class="request_text">
+                    <h1>Онлайн-заявка</h1>
+                    <p>Вы можете оставить заявку о доставке на нашем сайте онлайн</p>
+                </div>
 
-                    <div class="request_form">
-                        <div class="calculator">
-                            <div class="container_calculator">
-                                <div class="calculator_content">
-                                    <form action="" >
+                <div class="request_form">
+                    <div class="calculator">
+                        <div class="container_calculator">
+                            <div class="calculator_content">
+                                <form th:action="@{/request}" method="post" th:object="${req}">
 
-                                        <div class="form_type_tracking">
-                                            <p>Тип грузоперевозки</p>
-                                            <select class="form_type_tracking_select" name="from_sending">
-                                                <option selected disabled value="select">Выбрать</option>
-                                                <option value="road_type">Дорожные перевозки</option>
-                                                <option value="air_type">Авиа перевозки</option>
+                                    <div class="form_type_tracking">
+                                        <p>Тип грузоперевозки</p>
+                                        <select th:field="*{type}" onchange="loadCities()" id="transportType" class="form_type_tracking_select">
+                                            <option th:selected="selected" value="select">Выбрать</option>
+                                            <option value="road_type">Дорожные перевозки</option>
+                                            <option value="air_type">Авиа перевозки</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="from_where">
+                                        <div class="from_where_select_block">
+                                            <p>Пункт отправления</p>
+                                            <select th:field="*{city1}" id="citySelectOt" class="from_where_select" name="from_sending">
+                                                <option th:selected="selected" value="select">Выбрать</option>
                                             </select>
                                         </div>
-    
-                                        <div class="from_where">
-                                            <div class="from_where_select_block">
-                                                <p>Пункт отправления</p>
-                                                <select class="from_where_select" name="from_sending">
-                                                    <option selected disabled value="select">Выбрать</option>
-                                                    <option value="road_type">Москва</option>
-                                                    <option value="air_type">Санкт-Петербург</option>
-                                                    <option value="train_type">Владимир</option>
-                                                </select>
-                                            </div>
-                                            <img src="/assets/img/vector.svg" alt="">
-                                            <div class="from_where_select_block">
-                                                <p>Пункт назначения</p>
-                                                <select class="from_where_select" name="from_sending">
-                                                    <option selected disabled value="select">Выбрать</option>
-                                                    <option value="road_type">Москва</option>
-                                                    <option value="air_type">Санкт-Петербург</option>
-                                                    <option value="train_type">Владимир</option>
-                                                </select>
-                                            </div>
+                                        <img src="/assets/img/vector.svg" alt="">
+                                        <div class="from_where_select_block">
+                                            <p>Пункт назначения</p>
+                                            <select th:field="*{city2}" class="from_where_select" name="from_sending">
+                                                <option th:selected="selected" value="">Выбрать</option>
+                                                <option th:each="r : ${rate}" th:value="${r.city}" th:text="${r.city}"></option>
+                                            </select>
                                         </div>
-    
-                                         <div class="dimensions">
-                                            <div class="dimension_block">
-                                                <p>Вес, кг</p>
-                                                <input type="text" class="dimension_input">
-                                            </div>
-                                            <div class="dimension_block">
-                                                <p>Длинна, м</p>
-                                                <input type="text" class="dimension_input">
-                                            </div>
-                                            <div class="dimension_block">
-                                                <p>Ширина, м</p>
-                                                <input type="text" class="dimension_input">
-                                            </div>
-                                            <div class="dimension_block">
-                                                <p>Высота, м</p>
-                                                <input type="text" class="dimension_input">
-                                            </div>
+                                    </div>
 
-                                            <div class="dimension_block">
-                                                <p>Кол. мест</p>
-                                                <input type="text" class="dimension_input">
-                                            </div>
+                                    <div class="dimensions">
+                                        <div class="dimension_block">
+                                            <p>Вес, кг</p>
+                                            <input th:field="*{weight}" step="any" min="0" type="number" class="dimension_input">
                                         </div>
-                                        <input type="submit" value="Отправить" class="calc_btn">
-                                    </form>
-                                </div>
+                                        <div class="dimension_block">
+                                            <p>Длинна, м</p>
+                                            <input th:field="*{length}" step="any" min="0" type="number" class="dimension_input">
+                                        </div>
+                                        <div class="dimension_block">
+                                            <p>Ширина, м</p>
+                                            <input th:field="*{width}" step="any" min="0" type="number" class="dimension_input">
+                                        </div>
+                                        <div class="dimension_block">
+                                            <p>Высота, м</p>
+                                            <input th:field="*{height}" step="any" min="0" type="number" class="dimension_input">
+                                        </div>
+
+                                        <div class="dimension_block">
+                                            <p>Кол. мест</p>
+                                            <input th:field="*{count}" min="1" type="number" class="dimension_input">
+                                        </div>
+                                    </div>
+
+                                    <div class="contact">
+                                        <div class="contact_input_block">
+                                            <input th:field="*{email}" placeholder="Email" type="text" class="contact_input">
+                                        </div>
+                                        <div class="contact_input_block">
+                                            <input th:field="*{phone}" placeholder="Телефон" type="text" class="contact_input">
+                                        </div>
+                                    </div>
+                                    <div class="errors">
+                                        <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></span>
+                                        <span th:if="${#fields.hasErrors('city1')}" th:errors="*{city1}"></span>
+                                        <span th:if="${#fields.hasErrors('city2')}" th:errors="*{city2}"></span>
+                                        <span th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></span>
+                                        <span th:if="${#fields.hasErrors('length')}" th:errors="*{length}"></span>
+                                        <span th:if="${#fields.hasErrors('width')}" th:errors="*{width}"></span>
+                                        <span th:if="${#fields.hasErrors('height')}" th:errors="*{height}"></span>
+                                        <span th:if="${#fields.hasErrors('count')}" th:errors="*{count}"></span>
+                                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                                        <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+                                    </div>
+                                    <input type="submit" value="Отправить" class="calc_btn">
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    <footer>
-        <div class="container">
-            <div class="footer_content">
-                <div class="info_company">
-                    <img src="/assets/img/logo2.png" alt="">
-                    <div class="text_info_block">
+<footer>
+    <div class="container">
+        <div class="footer_content">
+            <div class="info_company">
+                <img src="/assets/img/logo2.png" alt="">
+                <div class="text_info_block">
 
-                        <div class="text_info">
-                            <h1>Адрес:</h1>
-                            
-                            <p>Московская обл., Аэропорт Домодедово, грузовой терминал</p>
-                        </div>
+                    <div class="text_info">
+                        <h1>Адрес:</h1>
 
-                        <div class="text_info">
-                            <h1>Email:</h1>
-                            <p>info@aviaperevozki.pro</p>
-                        </div>
-
-                        <div class="text_info">
-                            <h1>Телефон:</h1>
-                            <p>+7 (495) 741-11-23</p>
-                        </div>
-                        
+                        <p>Московская обл., Аэропорт Домодедово, грузовой терминал</p>
                     </div>
+
+                    <div class="text_info">
+                        <h1>Email:</h1>
+                        <p>info@aviaperevozki.pro</p>
+                    </div>
+
+                    <div class="text_info">
+                        <h1>Телефон:</h1>
+                        <p>+7 (495) 741-11-23</p>
+                    </div>
+
                 </div>
-
-                <div class="footer_url">
-                    <h1>Сервисы</h1>
-                    <nav>
-                        <ul class="footer_ul">
-                            <li class="footer_ul_li">
-                                <a href="/auto">Дорожные перевозки</a>
-                            </li>
-
-                            <li class="footer_ul_li">
-                                <a href="/air">Воздушные перевозки</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
-                <div class="footer_url">
-                    <h1>Соцсети</h1>
-                    <nav>
-                        <ul class="footer_ul">
-                            <li class="footer_ul_li">
-                                <a href="">Вконтакте</a>
-                            </li>
-
-                            <li class="footer_ul_li">
-                                <a href="">Telegram</a>
-                            </li>
-
-                            <li class="footer_ul_li">
-                                <a href="">WhatsApp</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
-                <div id="map-test" class="map"></div>
             </div>
+
+            <div class="footer_url">
+                <h1>Сервисы</h1>
+                <nav>
+                    <ul class="footer_ul">
+                        <li class="footer_ul_li">
+                            <a href="/auto.html">Дорожные перевозки</a>
+                        </li>
+
+                        <li class="footer_ul_li">
+                            <a href="/avia.html">Воздушные перевозки</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="footer_url">
+                <h1>Соцсети</h1>
+                <nav>
+                    <ul class="footer_ul">
+                        <li class="footer_ul_li">
+                            <a href="">Вконтакте</a>
+                        </li>
+
+                        <li class="footer_ul_li">
+                            <a href="">Telegram</a>
+                        </li>
+
+                        <li class="footer_ul_li">
+                            <a href="">WhatsApp</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div id="map-test" class="map"></div>
         </div>
-    </footer>
+    </div>
+</footer>
 </body>
 </html>

@@ -1,9 +1,9 @@
 package com.stuff.ideal.controllers;
 
-import com.stuff.ideal.models.Calculator;
-import com.stuff.ideal.models.Rate;
+import com.stuff.ideal.models.*;
 import com.stuff.ideal.services.CalculatorService;
 import com.stuff.ideal.services.RateService;
+import com.stuff.ideal.services.RequestService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -21,6 +21,8 @@ public class UserController {
     private final CalculatorService calculateService;
     private final RateService rateService;
 
+    private final RequestService requestService;
+
     @GetMapping("/")
     public String mainPage(Model model){
         model.addAttribute("calc", new Calculator());
@@ -28,7 +30,7 @@ public class UserController {
         return "index";
     }
 
-    @PostMapping("/calculate")
+    @PostMapping("/")
     public String Calculate(@ModelAttribute("calc") @Valid Calculator calculator,
                             BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()){
@@ -66,7 +68,21 @@ public class UserController {
     }
 
     @GetMapping("/request")
-    public String requestPage(){
+    public String requestPage(Model model){
+        model.addAttribute("req", new Request());
+        model.addAttribute("rate", rateService.showAllRate());
         return "request";
+    }
+
+    @PostMapping("/request")
+    public String sendReq(@ModelAttribute("req") @Valid Request request,
+                            BindingResult bindingResult, Model model){
+        if (bindingResult.hasErrors()){
+            model.addAttribute("rate", rateService.showAllRate());
+            return "request";
+        }
+
+        requestService.createReq(request);
+        return "success";
     }
 }
