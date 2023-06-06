@@ -23,7 +23,7 @@
 
     <title>Заявка на улугу грузоперевозок | Идеал</title>
 </head>
-<body onload="loadCities()">
+<body>
 
 <header class="header">
     <div class="container">
@@ -84,19 +84,8 @@
                                     </div>
 
                                     <div class="from_where">
-                                        <div class="from_where_select_block">
-                                            <p>Пункт отправления</p>
-                                            <select th:field="*{city1}" id="citySelectOt" class="from_where_select" name="from_sending">
-                                                <option th:selected="selected" value="select">Выбрать</option>
-                                            </select>
-                                        </div>
-                                        <img src="/assets/img/vector.svg" alt="">
-                                        <div class="from_where_select_block">
-                                            <p>Пункт назначения</p>
-                                            <select th:field="*{city2}" class="from_where_select" name="from_sending">
-                                                <option th:selected="selected" value="">Выбрать</option>
-                                                <option th:each="r : ${rate}" th:value="${r.city}" th:text="${r.city}"></option>
-                                            </select>
+                                        <div class="from_where_input_block">
+                                            <textarea th:field="*{message}" placeholder="Напишите место приема и пункт назначения"></textarea>
                                         </div>
                                     </div>
 
@@ -134,8 +123,7 @@
                                     </div>
                                     <div class="errors">
                                         <span th:if="${#fields.hasErrors('type')}" th:errors="*{type}"></span>
-                                        <span th:if="${#fields.hasErrors('city1')}" th:errors="*{city1}"></span>
-                                        <span th:if="${#fields.hasErrors('city2')}" th:errors="*{city2}"></span>
+                                        <span th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></span>
                                         <span th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></span>
                                         <span th:if="${#fields.hasErrors('length')}" th:errors="*{length}"></span>
                                         <span th:if="${#fields.hasErrors('width')}" th:errors="*{width}"></span>

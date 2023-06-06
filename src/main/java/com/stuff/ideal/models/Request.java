@@ -19,12 +19,9 @@ public class Request {
     @Column(name = "type")
     @NotEmpty(message = "Выберите тип грузоперевозки")
     private String type;
-    @Column(name = "city1")
-    @NotEmpty(message = "Выберите пункт отправления")
-    private String city1;
-    @Column(name = "city2")
-    @NotEmpty(message = "Выберите пункт назначения")
-    private String city2;
+    @Column(name = "message")
+    @NotEmpty(message = "Заполните поле c описанием")
+    private String message;
     @Column(name = "weight")
     @Min(value = 30, message = "Минимальный вес 30 кг")
     private float weight;
