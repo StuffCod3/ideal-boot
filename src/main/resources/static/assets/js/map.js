@@ -1,4 +1,4 @@
-let center = [55.415175,37.901512];
+let center = [55.415477,37.888837];
 
 function init() {
 	let map = new ymaps.Map('map-test', {
@@ -9,7 +9,7 @@ function init() {
 	var myPlacemark = new ymaps.GeoObject({
         geometry: {
             type: "Point",
-            coordinates: [55.415175,37.901512]
+            coordinates: [55.415477,37.888837]
         }
     });
 
